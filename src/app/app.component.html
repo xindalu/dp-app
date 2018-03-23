@@ -1,11 +1,30 @@
 <div class="ui-g">
-    <div class="ui-g-2 layout-sidebar">
-        Side Bar
+    <div class="ui-g-2 layout-sidebar ui-g-nopad">
+        <div>
+            <div style="text-align: center;height: 150px;">
+                <h2>{{title}}</h2>
+            </div>
+
+            <p-panelMenu [model]="items"></p-panelMenu>
+        </div>
     </div>
 
     <div class="ui-g-10 ui-g-nopad layout-main">
         <div class="ui-g-12 ui-g-nopad layout-toolbar">
-            Toolbar
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <i class="fa fa-bars"></i>
+                </div>
+
+                <div class="ui-toolbar-group-right">
+                    <button pButton type="button" label="New" icon="fa-plus"></button>
+                    <button pButton type="button" label="Open" icon="fa-folder-open"></button>
+                    <button pButton type="button" icon="fa-search"></button>
+                    <i class="fa fa-bars"></i>
+                    <button pButton type="button" icon="fa-refresh"></button>
+                    <button pButton type="button" icon="fa-trash"></button>
+                </div>
+            </p-toolbar>
         </div>
 
         <div class="ui-g-12 layout-content">
