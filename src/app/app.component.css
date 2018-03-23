@@ -1,0 +1,29 @@
+.layout-sidebar {
+    background-color: #0388e5;
+    color: white;
+}
+
+.layout-main {
+
+}
+
+.layout-toolbar {
+    background-color: #0388e5;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+}
+
+.layout-content {
+    min-height: calc(100vh - 70px);
+    max-height: calc(100vh - 70px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.layout-footer {
+    background-color: white;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
