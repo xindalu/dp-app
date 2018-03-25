@@ -1,6 +1,7 @@
 .layout-sidebar {
     /*background-image: linear-gradient(to bottom,#2bc0ec,#1b81d7);*/
     background: linear-gradient(180deg,#4e5159 0,#1f2023);
+    /*background: linear-gradient(180deg,#fff 0,#007bff);*/
     color: white;
 }
 
@@ -13,19 +14,50 @@
 }
 
 .layout-content {
-    min-height: calc(100vh - 64px);
-    max-height: calc(100vh - 64px);
+    min-height: calc(100vh - 130px);
+    max-height: calc(100vh - 130px);
     overflow-x: hidden;
     overflow-y: auto;
 }
 
 .layout-footer {
     background-color: white;
-    height: 30px;
-    line-height: 30px;
+    height: 25px;
+    line-height: 25px;
     text-align: center;
 }
 
 .ui-corner-all {
     border-radius: inherit !important;
+}
+
+.ui-state-default {
+    /*background-color: red;*/
+}
+
+.layout-header {
+    height: 50px;
+    background-image: linear-gradient(to right, #517fa4, #243949);
+}
+
+.layout-header {
+    color: white;
+    line-height: 50px;
+}
+
+.layout-header-left {
+}
+
+.app-logo {
+    float: left;
+    height: 40px;
+    padding-top: 5px;
+    padding-left: 30px;
+}
+
+.app-name {
+    font-size: 40px;
+    font-weight: bold;
+    padding-left: 10px;
+    float: left;
 }

@@ -9,6 +9,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class AppComponent implements OnInit{
     title = 'EOA';
+    logined = false;
     items: MenuItem[];
 
     ngOnInit() {
@@ -20,13 +21,13 @@ export class AppComponent implements OnInit{
                     label: 'New',
                     icon: 'fa-plus',
                     items: [
-                        {label: 'Project', icon: 'fa-lock'},
-                        {label: 'Other', icon: 'fa-list'}
+                        {label: 'Project'},
+                        {label: 'Other'},
                     ]
                 },
-                    {label: 'Open', icon: 'fa-external-link'},
+                    {label: 'Open'},
                     {separator: true},
-                    {label: 'Quit', icon: 'fa-close'}
+                    {label: 'Quit'}
                 ]
             },
             {
@@ -42,8 +43,7 @@ export class AppComponent implements OnInit{
                 icon: 'fa-question',
                 items: [
                     {
-                        label: 'Contents',
-                        icon: 'fa-bars'
+                        label: 'Contents'
                     },
                     {
                         label: 'Search',
@@ -58,8 +58,7 @@ export class AppComponent implements OnInit{
                                 ]
                             },
                             {
-                                label: 'File',
-                                icon: 'fa-file',
+                                label: 'File'
                             }
                         ]}
                 ]
@@ -84,6 +83,9 @@ export class AppComponent implements OnInit{
                         ]
                     }
                 ]
+            },
+            {
+                label: 'Quit', icon: 'fa-minus'
             }
         ];
     }

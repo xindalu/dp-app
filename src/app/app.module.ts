@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { MenubarModule } from 'primeng/menubar';
 
 import { AppComponent } from './app.component';
 
@@ -19,6 +20,7 @@ import { AppComponent } from './app.component';
         ToolbarModule,
         PanelMenuModule,
         ScrollPanelModule,
+        MenubarModule,
         BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule
