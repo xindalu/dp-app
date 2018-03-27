@@ -1,33 +1,46 @@
+<p-growl [(value)]="msgs" [style]="{'left':'calc(50% - 140px)'}"></p-growl>
+
 <div class="login-body">
     <div class="login-wrapper">
         <div class="logo">
-            <img src="../../../assets/logo.png">
+            <img src="../../../assets/logo-middle.png">
         </div>
 
-        <div class="ui-g login-form">
-            <div class="ui-g-12 login-form-top">
-                <span>EOA</span>
-            </div>
+        <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+            <div class="ui-g login-form">
+                <div class="ui-g-12 login-form-top">
+                    <span>Login</span>
+                </div>
 
-            <div class="ui-g-12 login-form-row">
-                <input class="login-form-input" pInputText type="text" placeholder="Username">
-            </div>
+                <div class="ui-g-12 login-form-row">
+                    <input formControlName="username"
+                           class="login-form-input"
+                           pInputText type="text"
+                           placeholder="Username">
+                </div>
 
-            <div class="ui-g-12 login-form-row">
-                <input class="login-form-input" pPassword type="password" placeholder="Password">
-            </div>
+                <div class="ui-g-12 login-form-row">
+                    <input formControlName="password"
+                           class="login-form-input"
+                           pPassword type="password"
+                           placeholder="Password">
+                </div>
 
-            <div class="ui-g-6 login-form-row">
-                <p-checkbox binary="true" label="Remember Me"></p-checkbox>
-            </div>
+                <div class="ui-g-6 login-form-row">
+                    <p-checkbox formControlName="rememberMe"
+                                binary="true"
+                                label="Remember Me"></p-checkbox>
+                </div>
 
-            <div class="ui-g-6 login-form-row login-form-row-right">
-                <span>Forgot Password</span>
-            </div>
+                <div class="ui-g-6 login-form-row login-form-row-right">
+                    <span>Forgot Password</span>
+                </div>
 
-            <div class="ui-g-12 login-form-row login-form-row-right">
-                <p-button label="Login"></p-button>
+                <div class="ui-g-12 login-form-row login-form-row-right">
+                    <button pButton type="submit" label="Login" [disabled]="!loginForm.valid"></button>
+                </div>
             </div>
-        </div>
+        </form>
+
     </div>
 </div>

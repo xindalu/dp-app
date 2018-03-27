@@ -8,7 +8,7 @@ import { MenuItem } from 'primeng/api';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-    title = 'EOA';
+    title = 'EVOLVE';
     logined = false;
     items: MenuItem[];
 

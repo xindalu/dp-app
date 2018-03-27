@@ -6,6 +6,9 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
+import { GrowlModule } from 'primeng/growl';
+
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { WelcomeComponent } from "./shared/components/welcome/welcome.component";
 import { Error404Component } from "./shared/components/error-404/error-404.component";
@@ -57,10 +60,13 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
+        FormsModule,
+        ReactiveFormsModule,
         CheckboxModule,
         ButtonModule,
         PasswordModule,
         InputTextModule,
+        GrowlModule,
         HttpClientModule,
         RouterModule.forRoot(routes)
     ],
