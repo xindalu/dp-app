@@ -11,7 +11,11 @@ export class UserService {
 
     constructor(private http: HttpClient) { }
 
-    public login(username: string, password: string, rememberMe: boolean = false): Observable<Auth> {
+    public login(
+        username: string,
+        password: string,
+        rememberMe: boolean = false
+    ): Observable<Auth> {
         let params = new HttpParams()
             .set('LoginForm[username]', username)
             .set('LoginForm[password]', password)
@@ -20,6 +24,12 @@ export class UserService {
         return this.http
             .post(`${environment.apiHost}/user/login`, params)
             .map(this.mapAuth)
+            .pipe(catchError(this.handleErrorObservable));
+    }
+
+    public logout() {
+        return this.http
+            .post(`${environment.apiHost}/user/logout`, {})
             .pipe(catchError(this.handleErrorObservable));
     }
 

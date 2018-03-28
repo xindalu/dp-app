@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
                 this.msgs = [];
                 this.msgs.push({severity: 'success', detail: 'Login success.'});
                 console.log(data);
-                this.router.navigate(['admin']);
+                this.router.navigate(['index']);
             },
             err => {
                 this.msgs = [];

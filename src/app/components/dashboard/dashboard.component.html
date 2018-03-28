@@ -1,0 +1,39 @@
+<p-confirmDialog></p-confirmDialog>
+
+<div class="ui-g">
+    <div class="ui-g-12 ui-g-nopad layout-header">
+        <a style="float: left;">
+            <img style="vertical-align: middle;margin-left: 10px;" width="40px" src="../../../assets/logo-middle.png">
+            <span style="vertical-align: middle;font-size: 30px; margin-left: 10px; padding-top: 5px;">EVOLVE</span>
+        </a>
+        <a style="float: right;">
+            <input type="text" pInputText placeholder="Search">
+            <span style="vertical-align: middle; margin-left: 10px;">Leon.Li</span>
+            <img style="vertical-align: middle;margin-left: 10px; margin-right: 10px;" width="40px" src="../../../assets/avatar.png">
+        </a>
+
+    </div>
+
+    <div class="ui-g-12 ui-g-nopad layout-main">
+        <div class="ui-g-12 layout-toolbar">
+            <p-menubar [model]="items" [autoDisplay]="false">
+                <div>
+                    <!--<button pButton icon="fa-sign-out" (onClick)="confirmLogout()"></button>-->
+                    <p-button (onClick)="confirmLogout()" icon="fa fa-fw fa-sign-out"></p-button>
+                    <!--<p-button icon="fa-sign-out" (onClick)="confirmLogout()" label="Logout"></p-button>-->
+                </div>
+            </p-menubar>
+        </div>
+
+        <div class="ui-g-12 layout-content">
+            <p>Content</p>
+            <div style="height: 1500px;">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-g-nopad layout-footer">
+            Footer
+        </div>
+    </div>
+</div>
