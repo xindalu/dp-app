@@ -1,14 +1,13 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessagesModule } from 'primeng/messages';
-
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { WelcomeComponent } from "./shared/components/welcome/welcome.component";
 import { Error404Component } from "./shared/components/error-404/error-404.component";
