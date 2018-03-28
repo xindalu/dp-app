@@ -17,28 +17,22 @@ export class UserService {
             .set('LoginForm[password]', password)
             .set('LoginForm[rememberMe]', rememberMe ? '1' : '0');
 
-        // let headers = new HttpHeaders({
-        //     // "Accept": "application/json",
-        //     // "Authorization": "123",
-        //     "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" // application/json
-        // });
-
         return this.http
             .post(`${environment.apiHost}/user/login`, params)
             .map(this.mapAuth)
             .pipe(catchError(this.handleErrorObservable));
     }
 
-    private mapAuth(data: any): Auth {
-        let auth: Auth = {
+    private mapAuth(response: any): Auth {
+        let data = response.data;
+
+        return {
             userId: data.userId,
             userName: data.userName,
             email: data.email,
             accessToken: data.accessToken,
             accessPermissions: data.accessPermissions
         };
-
-        return auth;
     }
 
     private handleErrorObservable(error: HttpErrorResponse | any) {

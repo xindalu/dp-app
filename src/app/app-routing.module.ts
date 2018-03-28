@@ -6,7 +6,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
-import { GrowlModule } from 'primeng/growl';
+import { MessagesModule } from 'primeng/messages';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -14,6 +14,7 @@ import { WelcomeComponent } from "./shared/components/welcome/welcome.component"
 import { Error404Component } from "./shared/components/error-404/error-404.component";
 import { GuideComponent } from "./shared/components/guide/guide.component";
 import { LoginComponent } from "./components/login/login.component";
+import { AuthGuard } from "./classes/auth-guard";
 
 const routes: Routes = [
     {
@@ -30,6 +31,7 @@ const routes: Routes = [
     },
     {
         path: 'admin',
+        canActivate: [AuthGuard],
         loadChildren: 'app/modules/admin/admin.module#AdminModule'
     },
     {
@@ -66,11 +68,14 @@ const routes: Routes = [
         ButtonModule,
         PasswordModule,
         InputTextModule,
-        GrowlModule,
+        MessagesModule,
         HttpClientModule,
         RouterModule.forRoot(routes)
     ],
     declarations: [GuideComponent, Error404Component, WelcomeComponent, LoginComponent],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [
+        AuthGuard
+    ]
 })
 export class AppRoutingModule {}
