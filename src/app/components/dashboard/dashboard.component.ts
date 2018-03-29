@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
 import { UserService } from "../../shared/services/user.service";
+import { StorageService } from "../../shared/services/storage.service";
 import { ConfirmationService } from "primeng/api";
 import { Router } from "@angular/router";
 
@@ -11,7 +12,8 @@ import { Router } from "@angular/router";
     styleUrls: ['./dashboard.component.css'],
     providers: [
         UserService,
-        ConfirmationService
+        ConfirmationService,
+        StorageService
     ]
 })
 export class DashboardComponent implements OnInit {
@@ -21,83 +23,120 @@ export class DashboardComponent implements OnInit {
     constructor(
         private router: Router,
         private userService: UserService,
-        private confirmationService: ConfirmationService
+        private confirmationService: ConfirmationService,
+        private storageService: StorageService
     ) { }
 
     ngOnInit() {
         this.items = [
             {
-                label: 'File',
-                icon: 'fa-file-o',
-                items: [{
-                    label: 'New',
-                    icon: 'fa-plus',
-                    items: [
-                        {label: 'Project'},
-                        {label: 'Other'},
-                    ]
-                },
-                    {label: 'Open'},
-                    {separator: true},
-                    {label: 'Quit'}
-                ]
+                label: 'Dashboard',
+                icon: 'fa-dashboard',
+                routerLink: ['/dashboard']
             },
             {
-                label: 'Edit',
-                icon: 'fa-edit',
-                items: [
-                    {label: 'Undo', icon: 'fa-mail-forward'},
-                    {label: 'Redo', icon: 'fa-mail-reply'}
-                ]
+                label: 'Admin',
+                icon: 'fa-cog',
+                routerLink: ['/admin']
+            },
+            {
+                label: 'DCC',
+                icon: 'fa-file',
+                routerLink: ['/dcc']
+            },
+            {
+                label: 'ERP',
+                icon: 'fa-cubes',
+                routerLink: ['/erp']
+            },
+            {
+                label: 'FIN',
+                icon: 'fa-money',
+                routerLink: ['/fin']
+            },
+            {
+                label: 'HRA',
+                icon: 'fa-users',
+                routerLink: ['/hra']
             },
             {
                 label: 'Actions',
                 icon: 'fa-gear',
                 items: [
                     {
+                        label: 'File',
+                        icon: 'fa-file-o',
+                        items: [{
+                            label: 'New',
+                            icon: 'fa-plus',
+                            items: [
+                                {label: 'Project'},
+                                {label: 'Other'},
+                            ]
+                        },
+                            {label: 'Open'},
+                            {separator: true},
+                            {label: 'Quit'}
+                        ]
+                    },
+                    {
                         label: 'Edit',
-                        icon: 'fa-refresh',
+                        icon: 'fa-edit',
                         items: [
-                            {label: 'Save', icon: 'fa-save'},
-                            {label: 'Update', icon: 'fa-save'},
+                            {label: 'Undo', icon: 'fa-mail-forward'},
+                            {label: 'Redo', icon: 'fa-mail-reply'}
                         ]
                     },
                     {
-                        label: 'Other',
-                        icon: 'fa-phone',
-                        items: [
-                            {label: 'Delete', icon: 'fa-minus'}
-                        ]
-                    }
-                ]
-            },
-            {
-                label: 'Help',
-                icon: 'fa-question',
-                items: [
-                    {
-                        label: 'Contents'
-                    },
-                    {
-                        label: 'Search',
-                        icon: 'fa-search',
+                        label: 'Actions',
+                        icon: 'fa-gear',
                         items: [
                             {
-                                label: 'Text',
+                                label: 'Edit',
+                                icon: 'fa-refresh',
                                 items: [
-                                    {
-                                        label: 'Workspace'
-                                    }
+                                    {label: 'Save', icon: 'fa-save'},
+                                    {label: 'Update', icon: 'fa-save'},
                                 ]
                             },
                             {
-                                label: 'File'
+                                label: 'Other',
+                                icon: 'fa-phone',
+                                items: [
+                                    {label: 'Delete', icon: 'fa-minus'}
+                                ]
                             }
-                        ]}
+                        ]
+                    },
+                    {
+                        label: 'Help',
+                        icon: 'fa-question',
+                        items: [
+                            {
+                                label: 'Contents'
+                            },
+                            {
+                                label: 'Search',
+                                icon: 'fa-search',
+                                items: [
+                                    {
+                                        label: 'Text',
+                                        items: [
+                                            {
+                                                label: 'Workspace'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'File'
+                                    }
+                                ]}
+                        ]
+                    },
+                    {
+                        label: 'Quit', icon: 'fa-minus'
+                    }
                 ]
-            },
-            {
-                label: 'Quit', icon: 'fa-minus'
             }
         ];
     }
@@ -109,7 +148,10 @@ export class DashboardComponent implements OnInit {
             icon: 'fa fa-question-circle',
             accept: () => {
                 this.userService.logout().subscribe(
-                    data => this.router.navigate(['login']),
+                    data => {
+                        this.storageService.clear();
+                        this.router.navigate(['login']);
+                    },
                     err => console.log(err.toString())
                 );
             }

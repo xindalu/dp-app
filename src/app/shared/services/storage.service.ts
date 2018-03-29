@@ -4,14 +4,14 @@ import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class StorageService {
+    keys: string[] = [
+        'user',
+        'auth'
+    ];
 
     constructor() { }
 
-    private getKey(key: string, keyEncrypted: boolean = true) {
-        key = keyEncrypted ? CryptoJS.AES.encrypt(
-            key,
-            environment.storageSecret
-        ).toString() : key;
+    private getKey(key: string) {
         return environment.storagePrefix + key;
     }
 
@@ -20,16 +20,30 @@ export class StorageService {
             value,
             environment.storageSecret
         ).toString();
+
+        sessionStorage.removeItem(this.getKey(key));
+
         return sessionStorage.setItem(this.getKey(key), encryptedData);
     }
 
     public get(key: string) {
         let encryptedValue = sessionStorage.getItem(this.getKey(key)),
+            decryptedValue = '';
+
+        if (encryptedValue) {
             decryptedValue = CryptoJS.AES.decrypt(
                 encryptedValue,
                 environment.storageSecret
-            ).toString();
+            ).toString(CryptoJS.enc.Utf8)
+        }
+
         return decryptedValue;
+    }
+
+    public clear() {
+        this.keys.forEach(key => {
+            sessionStorage.removeItem(this.getKey(key));
+        });
     }
 
     public remove(key: string) {

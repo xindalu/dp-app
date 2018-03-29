@@ -5,11 +5,15 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import 'rxjs/add/operator/map';
 import { Auth } from "../models/auth";
+import { StorageService } from "./storage.service";
 
 @Injectable()
 export class UserService {
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private storageService: StorageService
+    ) { }
 
     public login(
         username: string,
@@ -31,6 +35,18 @@ export class UserService {
         return this.http
             .post(`${environment.apiHost}/user/logout`, {})
             .pipe(catchError(this.handleErrorObservable));
+    }
+
+    public isLogined() {
+        let user = this.storageService.get('user');
+
+        if (!user) {
+            return false;
+        }
+
+        let userData = JSON.parse(user);
+
+        return !!userData.email;
     }
 
     private mapAuth(response: any): Auth {

@@ -16,7 +16,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { WelcomeComponent } from "./shared/components/welcome/welcome.component";
 import { Error404Component } from "./shared/components/error-404/error-404.component";
-import { GuideComponent } from "./shared/components/guide/guide.component";
 import { LoginComponent } from "./components/login/login.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 
@@ -25,7 +24,8 @@ import { AuthGuard } from "./classes/auth-guard";
 const routes: Routes = [
     {
         path: '',
-        component: DashboardComponent
+        redirectTo: 'index',
+        pathMatch: 'full'
     },
     {
         path: 'index',
@@ -49,12 +49,16 @@ const routes: Routes = [
         loadChildren: 'app/modules/dcc/dcc.module#DccModule'
     },
     {
-        path: 'hra',
-        loadChildren: 'app/modules/hra/hra.module#HraModule'
-    },
-    {
         path: 'erp',
         loadChildren: 'app/modules/erp/erp.module#ErpModule'
+    },
+    {
+        path: 'fin',
+        loadChildren: 'app/modules/fin/fin.module#FinModule'
+    },
+    {
+        path: 'hra',
+        loadChildren: 'app/modules/hra/hra.module#HraModule'
     },
     {
         path: '404',
@@ -62,7 +66,7 @@ const routes: Routes = [
     },
     {
         path: '**',
-        component: GuideComponent
+        redirectTo: 'index'
     }
 ];
 
@@ -83,7 +87,12 @@ const routes: Routes = [
         HttpClientModule,
         RouterModule.forRoot(routes)
     ],
-    declarations: [GuideComponent, Error404Component, WelcomeComponent, LoginComponent, DashboardComponent],
+    declarations: [
+        Error404Component,
+        WelcomeComponent,
+        LoginComponent,
+        DashboardComponent
+    ],
     exports: [RouterModule],
     providers: [
         AuthGuard

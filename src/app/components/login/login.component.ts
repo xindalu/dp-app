@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Validators, FormControl, FormGroup, FormBuilder } from "@angular/forms";
 import { UserService } from "../../shared/services/user.service";
+import { StorageService } from "../../shared/services/storage.service";
 import { Message } from 'primeng/components/common/api';
 import { Router } from "@angular/router";
 
@@ -10,7 +11,8 @@ import { Router } from "@angular/router";
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css'],
     providers: [
-        UserService
+        UserService,
+        StorageService
     ]
 })
 export class LoginComponent implements OnInit {
@@ -21,10 +23,16 @@ export class LoginComponent implements OnInit {
     constructor(
         private router: Router,
         private fb: FormBuilder,
-        private userService: UserService
+        private userService: UserService,
+        private storageService: StorageService
     ) { }
 
     ngOnInit() {
+        if (this.userService.isLogined()) {
+            // Redirect to index if user login
+            this.router.navigate(['index']);
+        }
+
         this.loginForm = this.fb.group({
             'username': new FormControl('', Validators.required),
             'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
@@ -37,7 +45,7 @@ export class LoginComponent implements OnInit {
             data => {
                 this.msgs = [];
                 this.msgs.push({severity: 'success', detail: 'Login success.'});
-                console.log(data);
+                this.storageService.add('user', JSON.stringify(data));
                 this.router.navigate(['index']);
             },
             err => {
