@@ -1,16 +1,35 @@
-.layout-sidebar {
-    /*background-image: linear-gradient(to bottom,#2bc0ec,#1b81d7);*/
-    background: linear-gradient(180deg,#4e5159 0,#1f2023);
-    /*background: linear-gradient(180deg,#fff 0,#007bff);*/
+.layout-header {
+    height: 50px;
     color: white;
+    line-height: 50px;
+    -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.3);
+    background-image: linear-gradient(to right, #1b81d7, #2bc0ec);
 }
 
-.layout-main {
-
+.header-left {
+    float: left;
+    margin-left: 10px;
 }
 
-.layout-toolbar {
+.header-right {
+    float: right;
+    margin-right: 10px;
+}
 
+.header-logo {
+    vertical-align: middle;
+}
+
+.header-app-name {
+    vertical-align: middle;
+    font-size: 30px;
+    margin-left: 10px;
+    padding-top: 5px;
+}
+
+.header-user {
+    vertical-align: middle;
+    margin-left: 10px;
 }
 
 .layout-content {
@@ -25,40 +44,4 @@
     height: 25px;
     line-height: 25px;
     text-align: center;
-}
-
-.ui-corner-all {
-    border-radius: inherit !important;
-}
-
-.ui-state-default {
-    /*background-color: red;*/
-}
-
-.layout-header {
-    height: 50px;
-    background-image: linear-gradient(to right, #1b81d7, #2bc0ec);
-}
-
-.layout-header {
-    color: white;
-    line-height: 50px;
-    -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.3);
-}
-
-.layout-header-left {
-}
-
-.app-logo {
-    float: left;
-    height: 40px;
-    padding-top: 5px;
-    padding-left: 30px;
-}
-
-.app-name {
-    font-size: 40px;
-    font-weight: bold;
-    padding-left: 10px;
-    float: left;
 }
